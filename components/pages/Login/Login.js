@@ -72,6 +72,10 @@ const Login = ({ navigation, route }) => {
   const loginRef = useRef(null);
   const passwordRef = useRef(null);
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
+  const dummy = {
+    id : "admin1",
+    password : "1111"
+  }
 
   async function handleLogin() {
     if (loginInput.value === "") {
@@ -82,26 +86,28 @@ const Login = ({ navigation, route }) => {
     }
     setIsLoading(true);
     try {
-      const { data, status } = await api.login(
-        {
-          password: passwordInput.value,
-          userid: loginInput.value,
-        },
-        ""
-      );
+      // const { data, status } = await api.login(
+      //   {
+      //     password: passwordInput.value,
+      //     userid: loginInput.value,
+      //   },
+      //   ""
+      // );
 
-      if (status == "200") {
-        if (data != "Faild") {
+      if (dummy.id === loginInput.value && dummy.password === passwordInput.value) {
+        // if (data != "Faild") {
           setIsLoggedIn({
             islogin: true,
-            userid: data[0].id,
-            name: data[0].name,
+            // userid: data[0].id,
+            // name: data[0].name,
+            userid: loginInput.value,
+            name: passwordInput.value,
             token: "",
           });
         } else {
           return Alert.alert("로그인에 실패하였습니다.");
         }
-      }
+      // }
       setIsLoading(false);
     } catch (e) {
       setIsLoading(false);
@@ -144,13 +150,7 @@ const Login = ({ navigation, route }) => {
               handleLogin();
             }}
           />
-          <ChangeInfo>
-            <InviteContentLeft onPress={() => console.log("")}>
-              <InviteText allowFontScaling={false}>
-                🎈 회원가입은 담당자를 통해서 진행됩니다.
-              </InviteText>
-            </InviteContentLeft>
-          </ChangeInfo>
+
 
           <Bottom>
             <AuthButton
