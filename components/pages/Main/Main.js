@@ -2,20 +2,43 @@ import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { isLoggedInState } from "./../../../recoil/Global";
-import { View, FlatList, Text } from "react-native";
+import { View, FlatList, Text, Button } from "react-native";
 import api from "./../../../config/Api";
 
 const Container = styled.View`
   width: 100%;
   height: 100%;
-  background-color: #f2f2f2;
+  background-color: #ffffff;
   flex-direction: column;
+  margin-top: 30px
 `;
 
 const ContainerText = styled.Text`
-  padding-top: 50px;
+  padding-top: 10px;
   font-size: 12px;
+  color: gray;
 `;
+
+const ContainterHead = styled.Text`
+  padding-top: 50px;
+  font-size: 20px;
+`;
+
+const FlexDemo = () => {
+  return (
+    <View style={{ marginTop: 30, height: '3%'}}>
+      <View style={{ flex: 1, backgroundColor: '#c4c4c4'}} />
+    </View>
+
+  )
+}
+
+// const ImageBackground = Styled.ImageBackground`
+//     flex: 1;
+//     height: 100%;
+//     weight: 100%;
+//     opacity: 0.8;
+// `;
 
 const Main = ({ navigation, route }) => {
   const [loginState, setLoginState] = useRecoilState(isLoggedInState);
@@ -46,15 +69,17 @@ const Main = ({ navigation, route }) => {
     </View>
   );
 
+
+  // statusBar.setBackgroundColor("transparent");
+  // statusBar.setTranslucent(true);
+  // statusBar.setBarstyle("dark-content");
+  
   return (
     <Container>
-      <ContainerText>메인 페이지</ContainerText>
-
-      <FlatList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-      />
+      <ContainterHead>김재환</ContainterHead>
+      <ContainerText>님</ContainerText>
+      <ContainerText>오늘 일정은 어떠셨나요</ContainerText>
+      <FlexDemo></FlexDemo>
     </Container>
   );
 };
