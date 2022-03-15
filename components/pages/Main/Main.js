@@ -4,24 +4,24 @@ import { useRecoilState } from "recoil";
 import { isLoggedInState } from "./../../../recoil/Global";
 import { View, FlatList, Text, Button } from "react-native";
 import api from "./../../../config/Api";
+// import SimpleImageSlider from "react-simple-image-slider/dist/ImageSlider";
 
 const Container = styled.View`
   width: 100%;
   height: 100%;
-  background-color: #ffffff;
   flex-direction: column;
-  margin-top: 30px
+  margin: 5% 0;
 `;
 
 const ContainerText = styled.Text`
-  padding-top: 10px;
-  font-size: 12px;
+  font-size: 18px;
   color: gray;
+  padding: 5%;
 `;
 
 const ContainterHead = styled.Text`
-  padding-top: 50px;
-  font-size: 20px;
+  padding: 5%;
+  font-size: 40px;
 `;
 
 const FlexDemo = () => {
@@ -59,6 +59,20 @@ const Main = ({ navigation, route }) => {
     }
   }
 
+const App = () => {
+  return (
+    <div>
+      <SimpleImageSlider
+        width={896}
+        height={504}
+        images={images}
+        showBullets={true}
+        shoWNavs={ture}
+        />
+    </div>
+  );
+}
+
   useEffect(() => {
     getData();
   }, []);
@@ -76,8 +90,7 @@ const Main = ({ navigation, route }) => {
   
   return (
     <Container>
-      <ContainterHead>김재환</ContainterHead>
-      <ContainerText>님</ContainerText>
+      <ContainterHead>김재환님</ContainterHead>
       <ContainerText>오늘 일정은 어떠셨나요</ContainerText>
       <FlexDemo></FlexDemo>
     </Container>
