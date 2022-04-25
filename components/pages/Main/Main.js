@@ -2,99 +2,96 @@ import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { isLoggedInState } from "./../../../recoil/Global";
-import { View, FlatList, Text, Button, StyleSheet,Image } from "react-native";
+import { View, FlatList, Text, Button, StyleSheet,Image, SafeAreaView, TextInput } from "react-native";
 import api from "./../../../config/Api";
+import { EvilIcons } from '@expo/vector-icons';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {NavigationContainer} from '@react-navigation/native';
 
 const Container = styled.View`
   width: 100%;
   height: 100%;
   flex-direction: column;
+  alignItems: center;
+`;
+
+const HeadLine = styled(Container)`
+  width: 100%;
+  height: 20%;
+  flex-direction: row;
   margin: 5% 0;
+  alignItems: center;
 `;
 
-const ContainterHead = styled.Text`
-  padding: 20px 0 0 20px;
-  font-size: 24px;
-`;
-
-const ContainerText = styled.Text`
-  font-size: 14px;
+const SeachText = styled.Text`
+  font-size: 12px;
   color: gray;
-  padding: 10px 0 0 20px;
 `;
 
-const Image1 = styled.View`
-  width: 60%;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 60px;
-  margin-top : 5px;
-  position : relative;
+const CenterRowText = styled.Text`
+  font-size: 12px;
+  color: black;
+  margin: 3px 40px 3px 40px;
 `;
 
-const BackImageView = styled.ImageBackground`
-  width: 250px;
-  height: 60px;
-  flex-direction: column;
+const Box = styled.View`
+  margin: 10% 10% 10% 10%;
+  flex-direction: row;
+  padding: 20px;
+  background-color: #e5e5e5;
+  border-radius: 20px;
 `;
 
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: 50,
-  },
-  tinyLogo: {
-    width: 50,
-    height: 50,
-  },
-  logo: {
-    width: 66,
-    height: 58,
+const SliderButton = styled.View`
+  width: 100%;
+  height: 10%;
+  flex-direction: row;
+  alignItems: center;
+  `
+
+const Tab = createBottomTabNavigator();
+
+// const TextBoxSample = () => {
+//   const [text, onChnageText] =Teact.useState("Useless Text")
+//   const [number, onChangeNumber] = React.useState(null);
+
+//   return (
+//     <SafeAreaView>
+//       <TextInput
+//         style={styles.input}
+//         onChangeText={onChangeText}
+//         value={text}
+//       />
+//       <TextInput
+//         style={styles.input}
+//         onChangeText={onChangeNumber}
+//         value={number}
+//         placeholder="useless placeholder"
+//         keyboardType="numeric"
+//       />
+//     </SafeAreaView>
+//   );
+// };
+
+// const styles = StyleSheet.create({
+//   input: {
+//     height: 40,
+//     margin: 12,
+//     borderWidth: 1,
+//     padding: 10,
+//   },
+// });
+
+
+
+const Inputbox = StyleSheet.create({
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
   },
 });
-
-// const Image2 = () => {
-//   return (
-//     <View style={styles.container}>
-//       <Image
-//         style={styles.tinyLogo}
-//         source={require("./../../assets/stew.png")}
-//       />
-//       <Image
-//         style={styles.tinyLogo}
-//         source={require("./../../assets/store.png")}
-//       />
-//       <Image
-//         style={styles.logo}
-//         source={require("./../../assets/cafe.png")}
-//       />
-//     </View>
-//   );
-// }
-
-
-const Flexbox = () => {
-  return (
-    <View style={{ marginTop: 10, height: 10}}>
-      <View style={{ flex: 1, backgroundColor: '#c4c4c4'}} />
-    </View>
-
-  )
-}
-
-const Demobox = () => {
-  return (
-    <View style={{ height: 30}}>
-    </View>
-
-  )
-}
-
-// const ImageBackground = Styled.ImageBackground`
-//     flex: 1;
-//     height: 100%;
-//     weight: 100%;
-//     opacity: 0.8;
-// `;
 
 const Main = ({ navigation, route }) => {
   const [loginState, setLoginState] = useRecoilState(isLoggedInState);
@@ -115,93 +112,27 @@ const Main = ({ navigation, route }) => {
     }
   }
 
-
-
-
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const RenderItem = ({ item }) => (
-    <View>
-      <Text>{item.name}</Text>
-    </View>
-  );
-
-  const Stew = () => {
-    return (
-      <View style={styles.container}>
-        <Image
-          style={{
-            borderColor: "gray",
-            borderWidth: 1,
-            height: 100,
-            width: 100
-          }}
-          source={require("./../../../assets/stew.png")}
-        />
-      </View>
-    );
-  }
-  // statusBar.setBackgroundColor("transparent");
-  // statusBar.setTranslucent(true);
-  // statusBar.setBarstyle("dark-content");
-  const RebornText = () => {
-    return (
-      <Container>
-        <BackImageView />
-      </Container>
-    )
-  }
-
-
+  const BackImageView = styled.ImageBackground`
+  width: 299px;
+  height: 200px;
+  flex-direction: column;
+`;
 
   return (
     <Container>
-      <ContainterHead>김재환님</ContainterHead>
-      <ContainerText>오늘 일정은 어떠셨나요</ContainerText>
-      <Flexbox></Flexbox>
-      <Image1>
-        <BackImageView source={require("./../../../assets/reborn.png")} resizeMode="stretch"/>
-        <Text> 오늘 일정은?</Text>
-        </Image1>
-      <ContainerText> 저녁 식사 준비하기</ContainerText>
-        <View 
-      style={{
-        flex:1,
-        flexDirection:"row",
-        justifyContent:"space-around",
-      }}
-    >
-      <View 
-      
-      // <Stewimage source={require("./../../../assets/reborn.png")} resizeMode="stretch"/>
-        style={{
-          backgroundColor:"green",
-          width:80,
-          height:80,
-        }}
-      /> 
-      <View 
-        style={{
-          backgroundColor:"gold",
-          width:80,
-          height:80,
-        }}
-      /> 
-      <View 
-        style={{
-          backgroundColor:"tomato",
-          width:80,
-          height:80,
-        }}
-      /> 
-    </View>
-    <Demobox></Demobox>
-    
+      <HeadLine>
+      <Box>
+        <CenterRowText allowFontScaling={false}>언제든·게스트 추가</CenterRowText>
+      </Box>
+      <EvilIcons name="gear" size={24} color="black"/>
+      </HeadLine>
+      <SliderButton></SliderButton>
+      <BackImageView source={require("./../../../assets/medienglogo.png")} />
     </Container>
+
   );
 };
 
 
 export default Main;
+
