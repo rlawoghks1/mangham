@@ -12,15 +12,24 @@ const Container = styled.View`
   width: 100%;
   height: 100%;
   flex-direction: column;
-  alignItems: center;
+  align-Items: center;
+  background-color: red;
 `;
 
-const HeadLine = styled(Container)`
+const Blackbox = styled.View`
   width: 100%;
-  height: 20%;
+  height: 40%;
+  flex-direction: column;
+  align-Items: center;
+`;
+
+const HeadLine = styled.View`
+  width: 100%;
+  height: 15%;
   flex-direction: row;
   margin: 5% 0;
-  alignItems: center;
+  align-Items: center;
+  background-color: gray;
 `;
 
 const SeachText = styled.Text`
@@ -35,12 +44,16 @@ const CenterRowText = styled.Text`
 `;
 
 const Box = styled.View`
-  margin: 10% 10% 10% 10%;
+  margin: 5% 5% 5% 25%;
   flex-direction: row;
-  padding: 20px;
+  padding: 1px;
   background-color: #e5e5e5;
   border-radius: 20px;
 `;
+
+// const GearIcon = EvilIcons.gear`
+//   size: 24px;
+//   color: black;`
 
 const SliderButton = styled.View`
   width: 100%;
@@ -124,8 +137,8 @@ const Main = ({ navigation, route }) => {
       <Box>
         <CenterRowText allowFontScaling={false}>언제든·게스트 추가</CenterRowText>
       </Box>
-      <EvilIcons name="gear" size={24} color="black"/>
-      </HeadLine>
+      <EvilIcons name="gear" size={24} color="black" float="right"/>
+        </HeadLine>
       <SliderButton></SliderButton>
       <BackImageView source={require("./../../../assets/medienglogo.png")} />
     </Container>

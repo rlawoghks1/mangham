@@ -73,8 +73,8 @@ const Login = ({ navigation, route }) => {
   const passwordRef = useRef(null);
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
   const dummy = {
-    id : "admin1",
-    password : "1111"
+    id : "1",
+    password : "1"
   }
 
   async function handleLogin() {
